@@ -8,6 +8,22 @@
 </head>
 <body>
 
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+	
+<% if user_signed_in? %>
+	<ul>
+		<li><%= current_user.email %></li>
+		<li><%= link_to destroy_user_session_path, method: :delete do %>Logout<% end %></li>
+	</ul>
+<% else %>
+	<ul>
+		<li><%= link_to "Home", root_url %></li>
+		<li><%= link_to new_user_session_url, class: "" do %>Log in<% end %></li>
+		<li><%= link_to new_user_registration_url, class: "" do %>Sign up<% end %></li>
+	</ul>
+<% end %>
+
 <%= yield %>
 
 </body>

@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
   before_action :set_link, only: [:destroy]
 
   # GET /links
