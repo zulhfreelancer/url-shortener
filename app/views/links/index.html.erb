@@ -6,7 +6,9 @@
       <th>URL</th>
       <th>Title</th>
       <th>Shortened URL</th>
-      <th>Action</th>
+      <% if user_signed_in? %>
+        <th>Action</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -22,7 +24,9 @@
           <% end %>
         </td>
         <td><%= link_to "Visit URL", request.base_url + "/" + link.slug, target: "_blank" %></td>
-        <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +34,6 @@
 
 <br>
 
-<%= link_to 'Add New Link', new_link_path %>
+<% if user_signed_in? %>
+  <%= link_to 'Add New Link', new_link_path %>
+<% end %>
