@@ -6,7 +6,11 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    if user_signed_in?
+      @links = Link.all.joins(:user).where('users.email' => current_user.email)
+    else
+      render "home"
+    end
   end
 
   # GET /links/1
@@ -36,7 +40,8 @@ class LinksController < ApplicationController
   # POST /links.json
   def create
     @link = Link.new(link_params)
-
+    @link.user_id = current_user.id
+    
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, notice: 'Link was successfully created.' }
@@ -51,10 +56,12 @@ class LinksController < ApplicationController
   # DELETE /links/1
   # DELETE /links/1.json
   def destroy
-    @link.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Link was successfully destroyed.' }
-      format.json { head :no_content }
+    if @link.user.email == current_user.email
+      @link.destroy
+      respond_to do |format|
+        format.html { redirect_to root_url, notice: 'Link was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -66,6 +73,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:url)
+      params.require(:link).permit(:url, users_attributes: [:user_id])
     end
 end

@@ -1,5 +1,7 @@
 class Link < ActiveRecord::Base
 
+	belongs_to :user
+
 	after_create :generate_slug, :scrape_title
 
 	def generate_slug

@@ -5,14 +5,14 @@
   <%= @link.url %>
 </p>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @link.slug %>
-</p>
+<% if @link.title.present? %>
+	<p>
+	  <strong>Title:</strong>
+	  <%= @link.title %>
+	</p>
+<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @link.title %>
-</p>
-
+<%= link_to "Open URL", request.base_url + "/" + @link.slug, target: "_blank" %>
+<br>
+<br>
 <%= link_to 'Back', root_path %>

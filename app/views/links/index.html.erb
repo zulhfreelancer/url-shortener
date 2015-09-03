@@ -23,7 +23,7 @@
             <span>-</span>
           <% end %>
         </td>
-        <td><%= link_to "Visit URL", request.base_url + "/" + link.slug, target: "_blank" %></td>
+        <td><%= link_to "Open URL", request.base_url + "/" + link.slug, target: "_blank" %></td>
         <% if user_signed_in? %>
           <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
