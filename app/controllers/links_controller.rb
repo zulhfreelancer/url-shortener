@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:destroy]
 
   # GET /links
   # GET /links.json
@@ -10,15 +10,24 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
+    if params[:slug]
+      # if there is slug in the URL, find the Link inside database with that slug
+      @link = Link.find_by(slug: params[:slug])
+      if @link
+        # and redirect the request to the Link original URL
+        redirect_to @link.url
+      else
+        # else, just show the Link details page
+        redirect_to root_path
+      end
+    else
+      @link = Link.find(params[:id])
+    end
   end
 
   # GET /links/new
   def new
     @link = Link.new
-  end
-
-  # GET /links/1/edit
-  def edit
   end
 
   # POST /links
@@ -37,26 +46,12 @@ class LinksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /links/1
-  # PATCH/PUT /links/1.json
-  def update
-    respond_to do |format|
-      if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
-        format.json { render :show, status: :ok, location: @link }
-      else
-        format.html { render :edit }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /links/1
   # DELETE /links/1.json
   def destroy
     @link.destroy
     respond_to do |format|
-      format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Link was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +64,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:url, :slug, :title)
+      params.require(:link).permit(:url)
     end
 end

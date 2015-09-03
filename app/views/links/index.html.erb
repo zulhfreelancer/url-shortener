@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Links</h1>
+<h1>Links</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Url</th>
-      <th>Slug</th>
+      <th>URL</th>
       <th>Title</th>
-      <th colspan="3"></th>
+      <th>Shortened URL</th>
+      <th>Action</th>
     </tr>
   </thead>
 
@@ -16,10 +16,14 @@
     <% @links.each do |link| %>
       <tr>
         <td><%= link.url %></td>
-        <td><%= link.slug %></td>
-        <td><%= link.title %></td>
-        <td><%= link_to 'Show', link %></td>
-        <td><%= link_to 'Edit', edit_link_path(link) %></td>
+        <td>
+          <% if link.title.present? %>
+            <%= link.title %>
+          <% else %>
+            <span>-</span>
+          <% end %>
+        </td>
+        <td><%= link_to "Visit URL", request.base_url + "/" + link.slug, target: "_blank" %></td>
         <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -28,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Link', new_link_path %>
+<%= link_to 'Add New Link', new_link_path %>
