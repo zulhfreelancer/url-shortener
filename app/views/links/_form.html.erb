@@ -13,7 +13,8 @@
 
   <div class="form-group">
     <%= f.label :url, "URL" %><br>
-    <%= f.url_field :url, class: "form-control" %>
+    <%= f.url_field :url, class: "form-control", placeholder: "Eg: http://google.com" %>
+    <p class="help-block">Make sure you enter a valid URL with <i>http://</i> or <i>https://</i></p>
   </div>
 
   <div class="form-group">

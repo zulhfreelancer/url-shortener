@@ -7,7 +7,7 @@ class LinksController < ApplicationController
   # GET /links.json
   def index
     if user_signed_in?
-      @links = Link.all.joins(:user).where('users.email' => current_user.email)
+      @links = Link.all.joins(:user).where('users.email' => current_user.email).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
     else
       render "home"
     end
