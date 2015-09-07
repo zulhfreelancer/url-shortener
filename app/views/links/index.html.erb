@@ -31,7 +31,7 @@
             </td>
             <td><%= link_to "Open URL", request.base_url + "/" + link.slug, target: "_blank", class: "btn btn-success" %></td>
             <% if user_signed_in? %>
-              <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+              <td><%= link_to 'Delete', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
             <% end %>
           </tr>
         <% end %>
