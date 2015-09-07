@@ -12,6 +12,7 @@ gem 'devise'
 gem 'awesome_print', require:"ap"
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
+gem 'validate_url'
 
 # to grab link title
 gem 'mechanize'
