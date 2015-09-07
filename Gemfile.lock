@@ -188,6 +188,7 @@ GEM
       railties (~> 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     webrobots (0.1.1)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -211,6 +212,7 @@ DEPENDENCIES
   turbolinks (= 2.3.0)
   uglifier (= 2.5.3)
   web-console (= 2.0.0.beta3)
+  will_paginate (~> 3.0.6)
 
 BUNDLED WITH
    1.10.5

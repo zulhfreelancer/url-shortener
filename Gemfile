@@ -10,6 +10,7 @@ gem 'jbuilder',     '2.2.3'
 gem 'sdoc',         '0.4.0', group: :doc
 gem 'devise'
 gem 'awesome_print', require:"ap"
+gem 'will_paginate', '~> 3.0.6'
 
 # to grab link title
 gem 'mechanize'
