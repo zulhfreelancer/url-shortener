@@ -1,18 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="col-md-6">
+		<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>URL:</strong>
-  <%= @link.url %>
-</p>
+		<p>
+		  <strong>URL:</strong><br>
+		  <%= @link.url %>
+		</p>
 
-<% if @link.title.present? %>
-	<p>
-	  <strong>Title:</strong>
-	  <%= @link.title %>
-	</p>
-<% end %>
+		<% if @link.title.present? %>
+			<p>
+			  <strong>Title:</strong><br>
+			  <%= @link.title %>
+			</p>
+		<% end %>
 
-<%= link_to "Open URL", request.base_url + "/" + @link.slug, target: "_blank" %>
-<br>
-<br>
-<%= link_to 'Back', root_path %>
+		<%= link_to "Open URL", request.base_url + "/" + @link.slug, target: "_blank", class: "btn btn-success" %> <%= link_to 'Back', root_path, class: "btn btn-default" %>
+	</div> <!-- /col-md-6 -->
+</div> <!-- /row -->

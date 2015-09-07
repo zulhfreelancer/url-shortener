@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+/* add some left space in login and register buttons */
+ .auth-btn{
+ 	margin-left: 5px;
+ }
+
+ /* remove all input glow */
+.form-control:focus {
+  box-shadow: none;
+}

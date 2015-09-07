@@ -11,14 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :url, "URL" %><br>
-    <%= f.url_field :url %>
+    <%= f.url_field :url, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.button :submit, class: "" do %>
+  <div class="form-group">
+    <%= f.button :submit, class: "btn btn-primary" do %>
       Shorten URL
     <% end %>
+    <%= link_to 'Back', root_path, class: "btn btn-default" %>
   </div>
 <% end %>
