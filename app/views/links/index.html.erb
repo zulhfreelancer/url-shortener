@@ -9,9 +9,9 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Original URL</th>
           <th>Title</th>
           <th>Shortened URL</th>
+          <th>Open URL</th>
           <% if user_signed_in? %>
             <th style="text-align: center;">Action</th>
           <% end %>
@@ -21,7 +21,6 @@
       <tbody>
         <% @links.each do |link| %>
           <tr>
-            <td><%= link.url %></td>
             <td>
               <% if link.title.present? %>
                 <%= link.title %>
@@ -29,6 +28,7 @@
                 <span>-</span>
               <% end %>
             </td>
+            <td><%= request.base_url + "/" + link.slug %></td>
             <td><%= link_to "Open URL", request.base_url + "/" + link.slug, target: "_blank", class: "btn btn-success" %></td>
             <% if user_signed_in? %>
               <td><%= link_to 'Delete', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>

@@ -6,6 +6,11 @@
 		  <%= @link.url %>
 		</p>
 
+		<p>
+		  <strong>Shortened URL:</strong><br>
+		  <%= request.base_url + "/" + @link.slug %>
+		</p>
+
 		<% if @link.title.present? %>
 			<p>
 			  <strong>Title:</strong><br>
